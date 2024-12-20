@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { Post } from '../../types'
 
 interface PostCardProps {
@@ -5,6 +6,12 @@ interface PostCardProps {
 }
 
 const PostCard = ({ post }: PostCardProps) => {
+  const navigate = useNavigate();
+
+  const handleReadMore = () => {
+    navigate(`/post/${post.id}`);
+  };
+
   return (
     <article className="post-card">
       {post.imageUrl && (
@@ -16,7 +23,9 @@ const PostCard = ({ post }: PostCardProps) => {
           Por {post.author} • {post.date}
         </p>
         <p className="post-excerpt">{post.excerpt}</p>
-        <button className="read-more">Leer más</button>
+        <button onClick={handleReadMore} className="read-more">
+          Leer más
+        </button>
       </div>
     </article>
   );
