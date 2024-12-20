@@ -1,48 +1,69 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Post } from '../../types'
 import Layout from '../common/Layout'
+import { getPostById } from '../../services/posts/PostService'
 
 const PostDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulando obtener datos de una API
-    const fetchPost = () => {
-      // Datos de ejemplo - reemplazar con tu API real
-      const mockPost: Post = {
-        id: Number(id),
-        title: "Introducción a React y TypeScript",
-        content: `
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod 
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
-          in culpa qui officia deserunt mollit anim id est laborum.
-        `,
-        excerpt: "Una guía completa para comenzar con React y TypeScript en 2024.",
-        date: "2024-03-18",
-        author: "Juan Pérez",
-        imageUrl: "https://picsum.photos/800/400"
-      };
-
-      setPost(mockPost);
-      setLoading(false);
+    const loadPost = async () => {
+      if (!id) {
+        setError('ID no proporcionado');
+        setLoading(false);
+        return;
+      }
+      
+      try {
+        console.log('Cargando post:', id);
+        const postData = await getPostById(id);
+        
+        if (!postData) {
+          setError('Post no encontrado');
+          return;
+        }
+        
+        setPost(postData);
+      } catch (error) {
+        console.error('Error loading post:', error);
+        setError('Error cargando el post');
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchPost();
+    loadPost();
   }, [id]);
 
   if (loading) {
     return <div>Cargando...</div>;
   }
 
+  if (error) {
+    return (
+      <Layout>
+        <div className="error-message">
+          <h2>Error: {error}</h2>
+          <button onClick={() => navigate('/blog')}>Volver al blog</button>
+        </div>
+      </Layout>
+    );
+  }
+
   if (!post) {
-    return <div>Post no encontrado</div>;
+    return (
+      <Layout>
+        <div className="not-found">
+          <h2>Post no encontrado</h2>
+          <button onClick={() => navigate('/blog')}>Volver al blog</button>
+        </div>
+      </Layout>
+    );
   }
 
   return (
@@ -62,11 +83,10 @@ const PostDetail = () => {
             <span>•</span>
             <span>{post.date}</span>
           </div>
-          <div className="post-detail-body">
-            {post.content.split('\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <div 
+            className="post-detail-body"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
       </article>
     </Layout>
