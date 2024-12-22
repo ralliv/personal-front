@@ -1,5 +1,5 @@
 ---
-title: This blog frontend app explained 
+title: This blog app explained 
 date: '2024-03-18'
 author: Adrián Villar
 excerpt: This blog frontend app explained

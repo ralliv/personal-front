@@ -8,22 +8,27 @@ interface PostCardProps {
 const PostCard = ({ post }: PostCardProps) => {
   const navigate = useNavigate();
 
-  const handleReadMore = () => {
-    navigate(`/post/${post.id}`);
-  };
-
   return (
     <article className="post-card">
       {post.imageUrl && (
-        <img src={post.imageUrl} alt={post.title} className="post-image" />
+        <img 
+          src={post.imageUrl} 
+          alt={post.title}
+          className="post-card-image"
+        />
       )}
-      <div className="post-content">
-        <h2>{post.title}</h2>
-        <p className="post-meta">
-          Por {post.author} • {post.date}
-        </p>
-        <p className="post-excerpt">{post.excerpt}</p>
-        <button onClick={handleReadMore} className="read-more">
+      <div className="post-card-content">
+        <h2 className="post-card-title">{post.title}</h2>
+        <div className="post-card-meta">
+          <span>Por {post.author}</span>
+          <span> • </span>
+          <span>{post.date}</span>
+        </div>
+        <p className="post-card-excerpt">{post.excerpt}</p>
+        <button 
+          onClick={() => navigate(`/post/${post.id}`)}
+          className="read-more"
+        >
           Read more
         </button>
       </div>
