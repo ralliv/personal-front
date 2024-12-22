@@ -24,7 +24,7 @@ const PostCard = ({ post }: PostCardProps) => {
         </p>
         <p className="post-excerpt">{post.excerpt}</p>
         <button onClick={handleReadMore} className="read-more">
-          Leer más
+          Read more
         </button>
       </div>
     </article>

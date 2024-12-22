@@ -87,6 +87,7 @@ background-color: #fcfcfc;
 }
 
 .read-more {
+  margin-top: 1rem;
   background: #007bff;
   color: white;
   border: none;

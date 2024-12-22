@@ -2,7 +2,7 @@
 title: Big O Notation
 date: '2024-03-18'
 author: Adrián Villar
-excerpt: Understanding Big O notation for algorithm efficiency
+excerpt: Big O notation notes
 imageUrl: https://picsum.photos/id/13/800/400
 ---
 

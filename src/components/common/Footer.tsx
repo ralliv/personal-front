@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Mi Blog Personal. Todos los derechos reservados.</p>
+      <p>avillar.dev&copy; {new Date().getFullYear()}  - All rights reserved</p>
     </footer>
   );
 };
