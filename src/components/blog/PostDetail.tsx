@@ -14,24 +14,24 @@ const PostDetail = () => {
   useEffect(() => {
     const loadPost = async () => {
       if (!id) {
-        setError('ID no proporcionado');
+        setError('ID not provided');
         setLoading(false);
         return;
       }
       
       try {
-        console.log('Cargando post:', id);
+        console.log('Loading post:', id);
         const postData = await getPostById(id);
         
         if (!postData) {
-          setError('Post no encontrado');
+          setError('Post not found');
           return;
         }
         
         setPost(postData);
       } catch (error) {
         console.error('Error loading post:', error);
-        setError('Error cargando el post');
+        setError('Error loading post');
       } finally {
         setLoading(false);
       }
@@ -41,7 +41,7 @@ const PostDetail = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <div>Loading...</div>;
   }
 
   if (error) {
@@ -49,7 +49,7 @@ const PostDetail = () => {
       <Layout>
         <div className="error-message">
           <h2>Error: {error}</h2>
-          <button onClick={() => navigate('/blog')}>Volver al blog</button>
+          <button onClick={() => navigate('/blog')}>Go to blog</button>
         </div>
       </Layout>
     );
@@ -60,7 +60,7 @@ const PostDetail = () => {
       <Layout>
         <div className="not-found">
           <h2>Post no encontrado</h2>
-          <button onClick={() => navigate('/blog')}>Volver al blog</button>
+          <button onClick={() => navigate('/blog')}>Go to blog</button>
         </div>
       </Layout>
     );

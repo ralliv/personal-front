@@ -1,44 +1,40 @@
 ---
-title: BIG O
+title: Big O Notation
 date: '2024-03-18'
 author: Adrián Villar
-excerpt: Explicación de la nomenclatura Big O para algoritmos
-imageUrl: https://picsum.photos/800/400
+excerpt: Understanding Big O notation for algorithm efficiency
+imageUrl: https://picsum.photos/id/13/800/400
 ---
 
-Nomenclatura que se utiliza para comparar eficiencia, rapidez entre algoritmos independientemente de especificaciones de sistema, hardware.
+Big O notation is a way to measure the efficiency of algorithms, regardless of system specifications or hardware.
 
-## Reglas de simplifcacion
+## Simplification Rules
 
-### Elimina todo factor constante
+### Eliminate Constant Factors
+O(**4**n) -> O(n)
+O(**999**n) -> O(n)
 
-0(**4**n) - 0(n)
-0(**999**n) - 0(n)
+Constant factors don't significantly affect performance as input size grows, so they're removed.
 
-Dado que 4 o 999 es una costante, no va a afectar al rendimiento de manera variable asi que se elimina.
-
-### Elimina los términos mas pequeños
-
+### Eliminate Smaller Terms
 O(n^2 + **n**) -> O(n^2)
 O(**n** + n^4 + **n^2**) -> O(n^4)
 O(n^4 - **n^3**) -> O(n^4)
 
-El objetivo es simplificar la explicación eliminando los términos que menos intervendrían en el performance.
+The dominant term determines the overall growth rate.
 
-### Ejemplo en el que se aplicarían las 2 reglas
-
+### Example Applying Both Rules
 O(**4**n^2 + **n** + **5**) -> O(n^2)
 
-### Analizando algoritmos segun posicionamiento del input N
+## Analyzing Algorithms Based on Input Size (N)
 
+![efficiency comparison](/images/posts/alg-efi-comparison.png)
 
-![[Pasted image 20241217234200.png]]
+Lower on the graph means better efficiency. Assuming N = 5:
 
-Cuanto mas abajo en la linea, mas óptimo. Supongamos que N es 5.
-
-En el caso de N ser factorial, O(n!) -> 5! = 5 * 4 * 3 * 2 * 1 = 120
-En el caso de N ser un exponente O(c^n) ->  2^5 = 32
-En el caso de N ser un polinomio O(n^c) -> 5^2 = 25
-En el caso de O(N) = 5.
-En el caso de O(log(n)) -> log2(5) = 2,32
-En el caso de O(1) -> es una operación constante (la mas eficiente, lo que significa que el performance de la función no escala dando igual el tamaño del input N)
+* O(n!): 5! = 120
+* O(c^n): 2^5 = 32
+* O(n^c): 5^2 = 25
+* O(N): 5
+* O(log(n)): log2(5) ≈ 2.32
+* O(1): Constant time (most efficient, unaffected by input size)

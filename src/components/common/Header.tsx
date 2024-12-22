@@ -3,9 +3,9 @@ const Header = () => {
     <header className="header">
       <nav>
         <ul>
-          <li><a href="/">Inicio</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/blog">Blog</a></li>
-          <li><a href="/about">Sobre mí</a></li>
+          <li><a href="/projects">Projects</a></li>
         </ul>
       </nav>
     </header>

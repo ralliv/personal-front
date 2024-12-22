@@ -23,7 +23,7 @@ const PostList = () => {
   }, []);
 
   if (loading) {
-    return <div>Cargando posts...</div>;
+    return <div>Loading posts...</div>;
   }
 
   return (
