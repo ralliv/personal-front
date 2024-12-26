@@ -52,8 +52,8 @@ jobs:
             mv /home/adrian/local-cloud/data/front-backup/* /home/adrian/local-cloud/data/front-backup-$(date +%Y-%m-%d-%H-%M-%S)
             # Limpiar carpeta front
             rm -rf /home/adrian/local-cloud/data/front/*
-            # Copiar archivos al contenedor de nginx
-            mv /tmp/dist/* /home/adrian/local-cloud/data/front
+            # Copiar archivos al contenedor de nginx - ESTA MAL
+            mv /tmp/dist/* /home/adrian/local-cloud/data/front/
             # Limpiar carpeta temporal
             rm -rf /tmp/dist
             # Reiniciar contenedor
