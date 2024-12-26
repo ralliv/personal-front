@@ -55,6 +55,6 @@ jobs:
             # Copiar archivos al contenedor de nginx - ESTA MAL
             mv /tmp/dist/* /home/adrian/local-cloud/data/front/
             # Limpiar carpeta temporal
-            rm -rf /tmp/dist
+            # rm -rf /tmp/dist
             # Reiniciar contenedor
             docker restart nginx
