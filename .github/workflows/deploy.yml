@@ -1,0 +1,60 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.12.0'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Deploy to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.ADRIAN_SERVER_HOST }}
+          port: ${{ secrets.ADRIAN_SERVER_PORT }} 
+          username: ${{ secrets.ADRIAN_SERVER_USER }}
+          key: ${{ secrets.ADRIAN_SSH_PRIVATE_KEY }}
+          source: "dist/"
+          target: "/tmp/dist"
+
+      - name: Execute deploy commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.ADRIAN_SERVER_HOST }}
+          port: ${{ secrets.ADRIAN_SERVER_PORT }}
+          username: ${{ secrets.ADRIAN_SERVER_USER }}
+          key: ${{ secrets.ADRIAN_SSH_PRIVATE_KEY }}
+          script: |
+            # Limpiar carpeta front
+            rm -rf /home/adrian/local-cloud/data/front-backup/*
+            # crear carpeta de backup si no existe
+            mkdir -p /home/adrian/local-cloud/data/front-backup
+            # Hacer backup de la carpeta actual
+            mv /home/adrian/local-cloud/data/front /home/adrian/local-cloud/data/front-backup
+            # renombrar la carpeta backup con la fecha actual
+            mv /home/adrian/local-cloud/data/front-backup /home/adrian/local-cloud/data/front-backup-$(date +%Y-%m-%d-%H-%M-%S)
+            # Limpiar carpeta front
+            rm -rf /home/adrian/local-cloud/data/front/*
+            # Copiar archivos al contenedor de nginx
+            mv /tmp/dist/* /home/adrian/local-cloud/data/front
+            # Limpiar carpeta temporal
+            rm -rf /tmp/dist
+            # Reiniciar contenedor
+            docker restart nginx
