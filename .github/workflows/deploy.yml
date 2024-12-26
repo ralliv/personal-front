@@ -31,8 +31,9 @@ jobs:
           port: ${{ secrets.ADRIAN_SERVER_PORT }} 
           username: ${{ secrets.ADRIAN_SERVER_USER }}
           key: ${{ secrets.ADRIAN_SSH_PRIVATE_KEY }}
-          source: "dist/*"
+          source: "dist/"
           target: "/tmp/dist"
+          strip_components: 1
 
       - name: Execute deploy commands
         uses: appleboy/ssh-action@master
