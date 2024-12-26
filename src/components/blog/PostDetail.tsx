@@ -79,7 +79,7 @@ const PostDetail = () => {
         <div className="post-detail-content">
           <h1>{post.title}</h1>
           <div className="post-detail-meta">
-            <span>Por {post.author}</span>
+            <span>By {post.author}</span>
             <span>•</span>
             <span>{post.date}</span>
           </div>

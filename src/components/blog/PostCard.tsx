@@ -20,7 +20,7 @@ const PostCard = ({ post }: PostCardProps) => {
       <div className="post-card-content">
         <h2 className="post-card-title">{post.title}</h2>
         <div className="post-card-meta">
-          <span>Por {post.author}</span>
+          <span>By {post.author}</span>
           <span> • </span>
           <span>{post.date}</span>
         </div>
