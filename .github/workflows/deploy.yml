@@ -31,7 +31,7 @@ jobs:
           port: ${{ secrets.ADRIAN_SERVER_PORT }} 
           username: ${{ secrets.ADRIAN_SERVER_USER }}
           key: ${{ secrets.ADRIAN_SSH_PRIVATE_KEY }}
-          source: "dist/"
+          source: "dist/*"
           target: "/tmp/dist"
 
       - name: Execute deploy commands
@@ -55,6 +55,6 @@ jobs:
             # Copiar archivos al contenedor de nginx
             cp -r /tmp/dist/* /home/adrian/local-cloud/data/front/
             # Limpiar carpeta temporal
-            # rm -rf /tmp/dist
+            rm -rf /tmp/dist
             # Reiniciar contenedor
             docker restart nginx
