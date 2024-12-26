@@ -47,9 +47,9 @@ jobs:
             # crear carpeta de backup si no existe
             mkdir -p /home/adrian/local-cloud/data/front-backup
             # Hacer backup de la carpeta actual
-            mv /home/adrian/local-cloud/data/front /home/adrian/local-cloud/data/front-backup
+            mv /home/adrian/local-cloud/data/front/* /home/adrian/local-cloud/data/front-backup
             # renombrar la carpeta backup con la fecha actual
-            mv /home/adrian/local-cloud/data/front-backup /home/adrian/local-cloud/data/front-backup-$(date +%Y-%m-%d-%H-%M-%S)
+            mv /home/adrian/local-cloud/data/front-backup/* /home/adrian/local-cloud/data/front-backup-$(date +%Y-%m-%d-%H-%M-%S)
             # Limpiar carpeta front
             rm -rf /home/adrian/local-cloud/data/front/*
             # Copiar archivos al contenedor de nginx
