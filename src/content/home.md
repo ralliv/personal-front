@@ -1,5 +1,5 @@
 ---
-title: Hi there
+title: Hi there 👋
 date: '2024-03-18'
 author: Adrián Villar
 excerpt: Este es un extracto de mi primer post
