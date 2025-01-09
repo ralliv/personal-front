@@ -7,7 +7,7 @@ imageUrl: https://picsum.photos/seed/tech-blog/800/400
 ---
 
 <div align="center">
-    <img src="/images/yo.png" class="markdown-image" alt="me">
+    <img src="/images/yo2.png" class="markdown-image" alt="me">
 </div>
 
 I'm **[Adrian Villar](https://www.linkedin.com/in/adrián-villar-gómez-44548099)**, a passionate developer always eager to learn and share. Join me as I explore the world of programming, one line of code at a time. Currently working at [@Telefónica Innovación Digital](https://www.linkedin.com/company/telefonica-innovacion-digital) as a backend engineer.
